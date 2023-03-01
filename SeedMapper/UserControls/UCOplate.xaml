@@ -12,7 +12,8 @@
 	d:DesignHeight="230" d:DesignWidth="300" Margin="2">
 
 	<UserControl.Resources>
-		<converters:AssignmentConverter x:Key="AssignmentConverter" />
+		<converters:AssignmentColorConverter x:Key="AssignmentColorConverter" />
+		<converters:AssignmentTextConverter x:Key="AssignmentTextConverter" />
 
 		<Style TargetType="{x:Type Button}">
 			<Style.Resources>
@@ -38,8 +39,11 @@
 			<!-- Item template -->
 			<ItemsControl.ItemTemplate>
 				<DataTemplate>
-					<Button Content="{Binding GroupSequence}" Margin="2"
-									Background="{Binding Converter={StaticResource AssignmentConverter}}" />
+					<Button Margin="2" Background="{Binding Converter={StaticResource AssignmentColorConverter}}">
+						<Button.Content>
+							<TextBlock Text="{Binding Converter={StaticResource AssignmentTextConverter}}" />
+						</Button.Content>
+					</Button>
 				</DataTemplate>
 			</ItemsControl.ItemTemplate>
 		</ItemsControl>

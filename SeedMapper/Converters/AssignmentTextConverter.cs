@@ -6,15 +6,15 @@ using SeedMapper.Models;
 
 namespace SeedMapper.Converters;
 
-public class AssignmentConverter : IValueConverter
+public class AssignmentTextConverter : IValueConverter
 {
 	public object Convert(object? value, Type targetType, object parameter, CultureInfo culture)
 	{
-		if (value is not Seed seed) return new SolidColorBrush(Colors.Fuchsia);
-			
+		if (value is not Seed seed) return string.Empty;
+
 		return (seed.GroupSequence == -1)
-			? new SolidColorBrush(Colors.Brown)
-			: new SolidColorBrush(Colors.MediumSeaGreen);
+			? string.Empty
+			: $"{seed.LimsId}{Environment.NewLine}{seed.GroupNumber} - {seed.GroupSequence}";
 	}
 
 	public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

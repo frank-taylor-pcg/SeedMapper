@@ -4,6 +4,8 @@ namespace SeedMapper.Models;
 
 public class Seed : PropertyChangedBase
 {
+	#region Properties
+
 	private string _LimsId;
 
 	public string LimsId
@@ -44,8 +46,12 @@ public class Seed : PropertyChangedBase
 		set => Set(ref _DestinationWell, value);
 	}
 
+	#endregion
+
 	public override string ToString()
 	{
-		return $"LimsID: {LimsId} | GroupNumber: {GroupNumber} | GroupSequence: {GroupSequence} | DestinationContainer: {DestinationContainer} | DestinationWell: {DestinationWell}";
+		return
+			$"LimsID: {LimsId} | GroupNumber: {GroupNumber} | GroupSequence: {GroupSequence} "
+			+ $"| DestinationContainer: {DestinationContainer} | DestinationWell: {DestinationWell}";
 	}
 }

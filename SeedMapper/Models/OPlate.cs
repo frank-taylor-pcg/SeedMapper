@@ -6,6 +6,7 @@ public class OPlate
 {
 	public string Barcode { get; set; } = "Unknown";
 	public ObservableCollection<Seed> Seeds { get; set; } = new();
+	public bool Unloaded { get; set; } = false;
 
 	public OPlate()
 	{

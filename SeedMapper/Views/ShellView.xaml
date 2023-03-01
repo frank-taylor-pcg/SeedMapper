@@ -8,22 +8,54 @@
 	xmlns:userControls="clr-namespace:SeedMapper.UserControls"
 	mc:Ignorable="d"
 	Background="DimGray"
-	Title="ShellView" Height="1080" Width="1920">
-	
+	Title="{Binding Title}" Height="1080" Width="1920">
+
 	<Grid>
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition  />
-			<ColumnDefinition  />
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition />
+			<ColumnDefinition Width="Auto" />
 		</Grid.ColumnDefinitions>
-		
-		<ItemsControl Grid.Column="0" Background="LightGray" MinWidth="300" x:Name="OPlates">
+
+		<DockPanel>
+			<DockPanel.Resources>
+				<Style TargetType="Button">
+					<Setter Property="Height" Value="40" />
+					<Setter Property="Margin" Value="2" />
+				</Style>
+			</DockPanel.Resources>
+
+			<GroupBox Header="Standard (non-CC)" DockPanel.Dock="Top" Margin="0,0,0,20">
+				<StackPanel>
+					<Button x:Name="NonCCNoGaps" Content="No gaps" />
+					<Button x:Name="NonCCGaps" Content="Sequence gaps" />
+				</StackPanel>
+			</GroupBox>
+
+			<GroupBox Header="Continuous Cycle" DockPanel.Dock="Top">
+				<StackPanel>
+					<Button x:Name="Single" Content="Single Cart" />
+					<Button x:Name="Multi" Content="Multi-Cart" />
+				</StackPanel>
+			</GroupBox>
+
+			<TextBlock
+				x:Name="Description"
+				Background="SlateGray"
+				FontSize="20"
+				Width="400"
+				Height="690"
+				TextWrapping="Wrap" />
+		</DockPanel>
+
+		<ItemsControl Grid.Column="1" Background="LightGray" MinWidth="300" x:Name="OPlates">
 			<!-- Host panel template -->
 			<ItemsControl.ItemsPanel>
 				<ItemsPanelTemplate>
-					<UniformGrid Columns="2" Rows="3" />
+					<UniformGrid Columns="2" Rows="4" />
 				</ItemsPanelTemplate>
 			</ItemsControl.ItemsPanel>
-			
+
 			<!-- Item template -->
 			<ItemsControl.ItemTemplate>
 				<DataTemplate>
@@ -31,8 +63,9 @@
 				</DataTemplate>
 			</ItemsControl.ItemTemplate>
 		</ItemsControl>
-		
-		<ListView Grid.Column="1" x:Name="Seeds">
+
+
+		<ListView Grid.Column="2" Grid.Row="0" x:Name="Seeds">
 			<ListView.ItemTemplate>
 				<DataTemplate>
 					<userControls:UCSeed />
